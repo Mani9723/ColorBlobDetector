@@ -7,19 +7,41 @@
   <script>
     var servletURL = window.location.origin;
   </script>
-<title>First JSP</title>
+<title>Blob Detector</title>
 </head>
 <%@ page import="java.util.Date" %>
 <body>
-<h2>Hello Heroku! I am JSP</h2>
-<strong>Current Time is</strong>: <%=new Date() %>
-<p>Try a: </p>
-<button onclick="window.location.assign(servletURL+'/hello');">Simple servlet </button>
-<button onclick="window.location.assign(servletURL+'/echo');">Echo POST requests servlet </button>
-<button onclick="window.location.assign(servletURL+'/twoButtons');">Form submitting servlet </button>
-<button onclick="window.location.assign(servletURL+'/file');">File persistence servlet </button>
-<button onclick="window.location.assign(servletURL+'/json');">JSON File persistence servlet </button>
-<button onclick="window.location.assign(servletURL+'/xml');">XML File persistence servlet </button>
-<button onclick="window.location.assign(servletURL+'/database');">Database persistence servlet </button>
+<form name = "myForm" enctype="multipart/form-data" action="colorDetector" method = "POST">
+
+  <h2>STEP 1:</h2>
+  <label for="img">Select image:</label>
+  <input type="file" id="img" name="img" accept="image/*" required><br>
+
+
+  <h2>STEP 2:</h2>
+  <h4>Option 1:</h4>
+  <label>Input RGB values</label><br>
+  <label>r:</label>
+  <input name = "red" type="number" min = "0" max = "255" size = "3">
+  <label>g:</label>
+  <input name = "green" type="number" min = "0" max = "255" size = "3">
+  <label>b:</label>
+  <input name = "blue" type="number" min = "0" max = "255" size="3"><br>
+
+  <h4>Option 2:</h4>
+  <label for="colorpicker">Color Picker:</label>
+  <input name = "colorPickerValue" type="color" id="colorpicker" value = "#aeaea6"><br>
+
+
+  <h2>STEP 3:</h2>
+  <h4>Please choose a margin between 0-10. This number indicates the distance from a particular color where you
+  still would consider it to be that color</h4>
+  <input type="range" id="distance" name="dist" min="0" max="10" value="5"
+         oninput="amount.value=dist.value" required>
+
+  <output id="amount" name="amount" for="rangeInput">5</output>
+
+ <br><input type="submit">
+</form>
 </body>
 </html>
